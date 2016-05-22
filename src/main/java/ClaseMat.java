@@ -29,12 +29,12 @@ public class ClaseMat {
 		//Imgproc.cvtColor(src1, src1, Imgproc.COLOR_BGR2GRAY);
 
 
-		Thread t1 = new Thread(new Iterator(src, "Canny", 0));
-		Thread t2 = new Thread(new Iterator(src, "Laplacian", src.width()));
-		//Thread t3 = new Thread(new Iterator(src1,"HoughL",0));
-		t1.start();
-		t2.start();
-		//t3.start();
+		//Thread t1 = new Thread(new Iterator(src, "Canny", 0));
+		//Thread t2 = new Thread(new Iterator(src, "Laplacian", src.width()));
+		Thread t3 = new Thread(new Iterator(src,"HoughL",0));
+		//t1.start();
+		//t2.start();
+		t3.start();
 /*	Mat dst = new Mat();
 		Imgproc.equalizeHist(src, dst);
 		Funciones.mostrar(src, 0, 0);
