@@ -20,10 +20,13 @@ public class Iterator implements Runnable {
 	public Iterator(Mat src, String type, int posx) {
 		this.type = type;
 		this.src = src.clone();
+		//this.src = Funciones.foto(false, false, 0);
 		this.posx = posx;
 	} // src.clone si quieres una matriz distinta
 
 	public void run() {
+
+
 		Imshow ventana = new Imshow("Iteration");
 		ventana.Window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.Window.setLocation(posx, 0);
@@ -90,7 +93,8 @@ public class Iterator implements Runnable {
 			count++;
 			Funciones.titulosBarras(frame,barra,n);
 			try {
-				Thread.sleep(50);
+				Thread.sleep(25); // faster
+				src = Funciones.foto(false, false, 0); // photo as video frames
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
