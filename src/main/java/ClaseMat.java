@@ -12,9 +12,9 @@ public class ClaseMat {
 	
 	public static void main(String[] args) {
 		System.loadLibrary("opencv_java248");
-		Mat src = Funciones.cargar("nocontraste.png", false, false, 0);
+		Mat src = Funciones.cargar("D:\\1-1.jpg", false, false, 0);
 		Funciones.mostrar(src, src.width()*2, 0);
-		Mat src1 = Funciones.cargar("cuadrado.jpg", false, false, 0);
+		Mat src1 = Funciones.cargar("D:\\1-1.jpg", false, false, 0);
 		//Mat src = Funciones.foto(false, false, 0);
 		//Funciones.guardar(src, "yo.jpg");
 		Mat colores[] = new Mat[3];

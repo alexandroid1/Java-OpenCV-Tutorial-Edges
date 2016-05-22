@@ -1,11 +1,12 @@
 import javax.swing.JFrame;
 import javax.swing.JSlider;
 
+
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
-
 import com.atul.JavaOpenCV.Imshow;
+
 
 public class Iterator implements Runnable {
 	Mat src = new Mat();

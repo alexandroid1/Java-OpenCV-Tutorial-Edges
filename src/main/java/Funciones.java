@@ -81,7 +81,7 @@ public class Funciones {
 
 	public static Mat cargar(String nimagen, boolean gr, boolean bw, int thr) {
 		Mat imagen;
-		imagen = Highgui.imread("C:\\OpenCV4Android\\" + nimagen);
+		imagen = Highgui.imread(nimagen);
 		if (gr)
 			Imgproc.cvtColor(imagen, imagen, Imgproc.COLOR_BGR2GRAY);
 		if (bw)
