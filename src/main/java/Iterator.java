@@ -42,6 +42,9 @@ public class Iterator implements Runnable {
 		case "HoughL":
 			n=5;
 			break;
+		case "Sobel":
+			n=3;
+			break;
 		}
 		barra = new JSlider[n];
 		frame = new JFrame[n];
@@ -63,6 +66,11 @@ public class Iterator implements Runnable {
 		int count = 0;
 		while (true) {
 			switch (type) {
+			case "Sobel":
+				Imgproc.Sobel(src, edges,-1,
+						1,1);
+
+				break;
 			case "Canny":
 				Imgproc.Canny(src, edges, barra[0].getValue(),
 						barra[1].getValue());
