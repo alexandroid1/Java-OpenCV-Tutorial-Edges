@@ -94,7 +94,7 @@ public class Iterator implements Runnable {
 			Funciones.titulosBarras(frame,barra,n);
 			try {
 				Thread.sleep(50); // faster
-			//	src = Funciones.foto(false, false, 0); // photo as video frames
+				//src = Funciones.foto(false, false, 0); // photo as video frames
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
