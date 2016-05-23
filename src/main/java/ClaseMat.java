@@ -32,11 +32,15 @@ public class ClaseMat {
 		//Thread t1 = new Thread(new Iterator(src, "Canny", 0));
 		//Thread t2 = new Thread(new Iterator(src, "Laplacian", src.width()));
 		//Thread t3 = new Thread(new Iterator(src,"HoughL",0));
-		Thread t4 = new Thread(new Iterator(src,"Sobel",0));
+		//Thread t4 = new Thread(new Iterator(src,"Sobel",0));
+		//Thread t5 = new Thread(new Iterator(src,"Sobel2",0));
+		Thread t6 = new Thread(new Iterator(src,"Sobel3",0));
 		//t1.start();
 		//t2.start();
 		//t3.start();
-		t4.start();
+		//t4.start();
+		//t5.start();
+		t6.start();
 /*	Mat dst = new Mat();
 		Imgproc.equalizeHist(src, dst);
 		Funciones.mostrar(src, 0, 0);

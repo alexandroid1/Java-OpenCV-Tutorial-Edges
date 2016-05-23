@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JSlider;
 
 
+import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
@@ -15,11 +16,14 @@ public class Iterator implements Runnable {
 	JFrame[] frame;
 	int n;
 	int posx;
+	int k;
+	Mat kernel2;
 	
 
 	public Iterator(Mat src, String type, int posx) {
 		this.type = type;
 		this.src = src.clone();
+		this.k = 1;
 		//this.src = Funciones.foto(false, false, 0);
 		this.posx = posx;
 	} // src.clone si quieres una matriz distinta
@@ -43,7 +47,13 @@ public class Iterator implements Runnable {
 			n=5;
 			break;
 		case "Sobel":
-			n=3;
+			n=0;
+			break;
+		case "Sobel2":
+				n=0;
+			break;
+		case "Sobel3":
+				n=1;
 			break;
 		}
 		barra = new JSlider[n];
@@ -62,14 +72,58 @@ public class Iterator implements Runnable {
 		}
 		
 		if(type == "Laplacian"){barra[0].setMaximum(15);barra[1].setMaximum(50);}
-		
+
+		//for sobel
+		int kernelSize = 9;
+		Mat destination = new Mat(src.rows(),src.cols(),src.type());
+		Mat kernel = new Mat(kernelSize,kernelSize, CvType.CV_32F){
+			{
+				put(0,0,-1);
+				put(0,1,0);
+				put(0,2,1);
+
+				put(1,0-2);
+				put(1,1,0);
+				put(1,2,2);
+
+				put(2,0,-1);
+				put(2,1,0);
+				put(2,2,1);
+			}
+
+		};
+
+		kernel2 = new Mat(kernelSize,kernelSize, CvType.CV_32F) {
+			{
+				put(k,0,-2);
+				put(0,5,0);
+				put(0,2,1);
+
+				put(2,0-k);
+				put(1,5,0);
+				put(1,2,3);
+
+				put(3,0,-1);
+				put(3,5,0);
+				put(k,3,1);
+
+			}
+		};
+			// eond of for sobel
+
 		int count = 0;
 		while (true) {
 			switch (type) {
-			case "Sobel":
+			case "Sobel3":
+
+				Imgproc.filter2D(src, edges, -1, kernel2);
+				break;
+			case "Sobel2":
 				Imgproc.Sobel(src, edges,-1,
 						1,1);
-
+				break;
+			case "Sobel":
+				Imgproc.filter2D(src, edges, -1, kernel);
 				break;
 			case "Canny":
 				Imgproc.Canny(src, edges, barra[0].getValue(),
@@ -103,6 +157,23 @@ public class Iterator implements Runnable {
 			try {
 				Thread.sleep(50); // faster
 				//src = Funciones.foto(false, false, 0); // photo as video frames
+				k=barra[0].getValue()/50+2;
+				kernel2 = new Mat(kernelSize,kernelSize, CvType.CV_32F) {
+					{
+						put(k,0,-2);
+						put(0,5,0);
+						put(0,2,1);
+
+						put(2,0-k);
+						put(1,5,0);
+						put(1,2,3);
+
+						put(3,0,-1);
+						put(3,5,0);
+						put(k,3,1);
+
+					}
+				};
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

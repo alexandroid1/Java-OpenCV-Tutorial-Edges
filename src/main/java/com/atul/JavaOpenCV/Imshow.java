@@ -121,7 +121,6 @@ public class Imshow {
             default:
                 Window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         }
-
     }
 
     /**
